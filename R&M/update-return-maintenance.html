@@ -608,7 +608,22 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <section class="content py-4">
+          <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Update Return & Maintenance</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Update Return & Maintenance</li>
+                        </ol>
+                    </div>
+                  </div>
+              </div>
+          </section>
+            <section class="content py-2">
                 <div class="container-fluid">
                     <div class="card card-default">
                         <div class="card-header">
@@ -679,7 +694,7 @@
                                                         <td><input type="number" id="quantity0'" name="quantities[]"
                                                                 class="form-control" /></td>
                                                         <td>
-                                                            <input type="file" id="store0" name="images[]" class="form-control" />
+                                                            <input type="file" id="image0" name="image[]" class="form-control" />
                                                         </td>
                                                         <td><button type="button"
                                                                 class="pull-right btn btn-danger rounded-circle remove-tr"><i class="fa fa-trash"></i></button>
@@ -696,16 +711,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-group">
-                                      <label>Sales Remarks</label>
-                                      <textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
-                                    </div>
-                                  </div>
-
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label>Staff Remarks</label>
+                                      <label>Remarks</label>
                                       <textarea class="form-control" rows="5" placeholder="Enter ..."></textarea>
                                     </div>
                                   </div>
@@ -807,29 +815,6 @@
                     format: 'MM/DD/YYYY hh:mm A'
                 }
             })
-            //Date range as a button
-            $('#daterange-btn').daterangepicker(
-                {
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function (start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                }
-            )
-
-            //Timepicker
-            $('#timepicker').datetimepicker({
-                format: 'LT'
-            })
 
             //Bootstrap Duallistbox
             $('.duallistbox').bootstrapDualListbox()
@@ -856,68 +841,6 @@
         // DropzoneJS Demo Code Start
         Dropzone.autoDiscover = false
 
-        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-        var previewNode = document.querySelector("#template")
-        previewNode.id = ""
-        var previewTemplate = previewNode.parentNode.innerHTML
-        previewNode.parentNode.removeChild(previewNode)
-
-        var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-            url: "/target-url", // Set the url
-            thumbnailWidth: 80,
-            thumbnailHeight: 80,
-            parallelUploads: 20,
-            previewTemplate: previewTemplate,
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: "#previews", // Define the container to display the previews
-            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-        })
-
-        myDropzone.on("addedfile", function (file) {
-            // Hookup the start button
-            file.previewElement.querySelector(".start").onclick = function () { myDropzone.enqueueFile(file) }
-        })
-
-        // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function (progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-        })
-
-        myDropzone.on("sending", function (file) {
-            // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1"
-            // And disable the start button
-            file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-        })
-
-        // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("queuecomplete", function (progress) {
-            document.querySelector("#total-progress").style.opacity = "0"
-        })
-
-        // Setup the buttons for all transfers
-        // The "add files" button doesn't need to be setup because the config
-        // `clickable` has already been specified.
-        document.querySelector("#actions .start").onclick = function () {
-            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-        }
-        document.querySelector("#actions .cancel").onclick = function () {
-            myDropzone.removeAllFiles(true)
-        }
-  // DropzoneJS Demo Code End
-    </script>
-
-    <script>
-        $(function () {
-            // Summernote
-            $('#summernote').summernote()
-
-            // CodeMirror
-            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-                mode: "htmlmixed",
-                theme: "monokai"
-            });
-        })
     </script>
 
 
@@ -929,7 +852,7 @@
 
         ++i;
 
-        $("#dynamicTable").append('<tr><td><select name="types[]" id="type_' + i + '_name"  class="form-control type_name type_name' + i + '"  data-index="' + ($('.type_name').length + 1) + '"><option value="">-- Choose Product --</option> @foreach ($type as $types)<option value="{{ $types->id}}"> {{ $types->name }}</option>@endforeach</select></td><td> <select name="product" id="product_' + i + '_name"  class="form-control product_name product_name' + i + '" data-index="' + ($('.product_name').length + 1) + '"></select></td><td><input type="text" id="quantity' + i + '" name="quantities[]" class="form-control"  /></td><td><input type="number" id="store' + i + '" name="stores[]" class="form-control" /></td><td><input type="number" id="price' + i + '" name="prices[]" class="form-control" /></td><td><input type="number" id="tax' + i + '" name="taxes[]" class="form-control" /></td><td><input type="number" id="subtotal' + i + '" name="subtotals[]" class="form-control" /></td> <td><button type="button" class="pull-right btn btn-danger rounded-circle remove-tr"><i class="fa fa-trash"></i></button></td> </tr>');
+        $("#dynamicTable").append('<tr><td><select name="types[]" id="type_' + i + '_name"  class="form-control type_name type_name' + i + '"  data-index="' + ($('.type_name').length + 1) + '"><option value="">-- Choose Product --</option> @foreach ($type as $types)<option value="{{ $types->id}}"> {{ $types->name }}</option>@endforeach</select></td><td> <select name="product" id="product_' + i + '_name"  class="form-control product_name product_name' + i + '" data-index="' + ($('.product_name').length + 1) + '"></select></td><td><input type="number" id="quantity' + i + '" name="quantities[]" class="form-control"  /></td><td><input type="file" id="image' + i + '" name="image[]" class="form-control" /></td> <td><button type="button" class="pull-right btn btn-danger rounded-circle remove-tr"><i class="fa fa-trash"></i></button></td> </tr>');
     });
 
     $(document).on('click', '.remove-tr', function () {
