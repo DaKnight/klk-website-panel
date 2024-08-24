@@ -2,24 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>View Work Order</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Return</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css" />
-    <!-- DataTables -->
-    <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
-    <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/adminlte.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"  />
-        
-    <link rel="stylesheet" href="../daterangepicker-bs3.css" />
-    <link rel="stylesheet" href="../updated_colors.css">
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
     <style>
         @media (max-width: 1024px) {
@@ -38,6 +49,14 @@
         width: 10px !important;
         }
         
+        label:not(.form-check-label):not(.custom-file-label) {
+            font-weight: 500 !important;
+        }
+
+        .noBorder{
+          border: none;
+          background-color: #fff !important;
+        }
     </style>
 </head>
 
@@ -596,225 +615,349 @@
         <div class="content-wrapper">
           <section class="content-header">
             <div class="container-fluid">
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <h1>View Vendor Progress</h1>
-                </div>
-                <div class="col-sm-6">
-                  <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">View Vendor Progress</li>
-                  </ol>
-                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Return & Maintenance Request</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Return & Maintenance Request</li>
+                        </ol>
+                    </div>
+                  </div>
               </div>
-            </div>
           </section>
-
-            <!-- Main content -->
-            <section class="content">
+            <section class="content py-2">
                 <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-12 my-2">
-                      <div class="card">
+                    <div class="card card-default mb-5">
                         <div class="card-header">
-                          <div class="card-title">Filter Vendor</div>
+                            <h3 class="card-title">View Repair & Maintenance</h3>
                         </div>
                         <div class="card-body">
-                          <form action="#">
                             <div class="row">
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label for="startDate">Start Date</label>
-                                  <input type="date" name="startDate" id="startDate" class="form-control">
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label for="tillDate">Till Date</label>
-                                  <input type="date" name="startDate" id="startDate" class="form-control">
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
-                                  <label for="vendor">Select Vendor</label>
-                                  <select name="vendor" id="vendor" class="form-control select2" style="width: 100%;">
-                                    <option value="dis" selected disabled>Choose Vendor...</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="card-footer">
-                          <button class="btn btn-secondary d-block px-5" type="submit">Search</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                    <div class="row">
-                        <div class="col-12 my-2">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Vendor Progress</h3>
-                                </div>
-                                <div class="card shadow-none">
-                                    <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped d-block d-xxl-table" style="overflow-x: auto;">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-wrap: nowrap;">Date</th>
-                                                    <th style="text-wrap: nowrap;">Work Order</th>
-                                                    <th style="text-wrap: nowrap;">Work Order Number</th>
-                                                    <th style="text-wrap: nowrap;">State</th>
-                                                    <th style="text-wrap: nowrap;">District</th>
-                                                    <th style="text-wrap: nowrap;">Project Head</th>
-                                                    <th style="text-wrap: nowrap;">Work Order Quantity</th>
-                                                    <th style="text-wrap: nowrap;">Images</th>
-                                                    <th style="text-wrap: nowrap;">Report</th>
-                                                    <th style="text-wrap: nowrap;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td style="text-wrap: nowrap;">06-12-23</td>
-                                                    <td style="text-wrap: nowrap;">ets-21354655465335</td>
-                                                    <td style="text-wrap: nowrap;">sfd-21354655465335</td>
-                                                    <td style="text-wrap: nowrap;">Warehouse 1</td>
-                                                    <td style="text-wrap: nowrap;">Punit</td>
-                                                    <td style="text-wrap: nowrap;">Dukhijas</td>
-                                                    <td style="text-wrap: nowrap;">101</td>
-                                                    <td style="text-wrap: nowrap;">iamges</td>
-                                                    <td style="text-wrap: nowrap;">me report</td>
-                                                    <td style="text-wrap: nowrap;">
-                                                      <div class="btn-group">
-                                                        <button type="button" class="btn btn-outline-info">Action</button>
-                                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                                          <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                            <a class="dropdown-item" href="./update-return-sale.html"><i class="fa fa-pen-to-square"></i>&emsp;Edit</a>
-                                                          <div class="dropdown-divider"></div>
-                                                          <a class="dropdown-item" href="#"><span><i class="fa fa-trash"></i></span>&emsp;Delete</a>
-                                                          <div class="dropdown-divider"></div>
-                                                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
-                                                            Launch Large Modal
-                                                          </button>
-                                                        </div>
-                                                      </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                      <th style="text-wrap: nowrap;">Date</th>
-                                                      <th style="text-wrap: nowrap;">Work Order</th>
-                                                      <th style="text-wrap: nowrap;">Work Order Number</th>
-                                                      <th style="text-wrap: nowrap;">State</th>
-                                                      <th style="text-wrap: nowrap;">District</th>
-                                                      <th style="text-wrap: nowrap;">Project Head</th>
-                                                      <th style="text-wrap: nowrap;">Work Order Quantity</th>
-                                                      <th style="text-wrap: nowrap;">Images</th>
-                                                      <th style="text-wrap: nowrap;">Report</th>
-                                                      <th style="text-wrap: nowrap;">Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                        </table>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Request Date : </label>
+                                        <input type="text" name="requestDate" id="requestDate" class="form-control noBorder" placeholder="Request Date" disabled>
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Vendor Name : </label>
+                                        <input type="text" name="vendorName" id="vendorName" class="form-control noBorder" placeholder="Request Vendor Name" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Project Head : </label>
+                                        <input type="text" name="projectHead" id="projectHead" class="form-control noBorder" placeholder="Request Project Head" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>State : </label>
+                                        <input type="text" name="requestState" id="requestState" class="form-control noBorder" placeholder="Request State" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>District : </label>
+                                        <input type="text" name="requestDistrict" id="requestDistrict" class="form-control noBorder" placeholder="Request District" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Block : </label>
+                                        <input type="text" name="requestBlock" id="requestBlock" class="form-control noBorder" placeholder="Request Block" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Site Name : </label>
+                                        <input type="text" name="siteName" id="siteName" class="form-control noBorder" placeholder="Request Site Name" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Site Location : </label>
+                                        <input type="text" name="siteLocation" id="siteLocation" class="form-control noBorder" placeholder="Request Site Location" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Material Image 1 : </label>
+                                        <img src="../dist/img/avatar.png" alt="" class="form-control" style="width: 300px; height: 150px;">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="card ">
+                                        <div class="card-header card-grey">
+                                            <h3 class="card-title">Order List *</h3>
+                                        </div>
+                                        <div class="card-body card-footer">
+                                            <table  class="table table-bordered d-block d-md-table" style="overflow: auto;">
+                                              <thead>
+                                                <tr>
+                                                  <th>S. No.</th>
+                                                  <th>Material Info</th>
+                                                  <th>Material Quantity</th>
+                                                  <th>Action</th>
+                                                  <th>Details</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>1</td>
+                                                  <td>wow</td>
+                                                  <td>wow</td>
+                                                  <td>wow</td>
+                                                  <td>wow</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                      <label>Message</label>
+                                      <textarea class="form-control noBorder" rows="5" placeholder="Enter ..." disabled></textarea>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal fade" id="modal-lg">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title">Large Modal</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <form action="#">
-                          <div class="row">
-                            <div class="col-12">
-                              <div class="form-group">
-                                <label>Field 1</label>
-                                <select name="select" id="select" class="form-control select2" style="width: 100%;">
-                                  <option value="dis" selected disabled>Select...</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <div class="form-group">
-                                <label>Report</label>
-                                <textarea name="report" id="report" class="form-control"></textarea>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
+
+                    <div class="text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" style="width: 30px; transform:rotate(90deg); enable-background:new 0 0 512.001 512.001" xml:space="preserve" >
+                        <path style="fill:#298983" d="m288.814 256.002-59.005-59.005H21.553v118.008h208.256z"/>
+                        <path transform="rotate(-134.999 289.552 142.83)" style="fill:#a5f2e5" d="M210.055 83.824h158.99v118.011h-158.99z"/>
+                        <path d="M512 255.804c0-2.858-1.135-5.6-3.157-7.62L282.692 22.032c-4.209-4.209-11.032-4.209-15.24 0l-98.684 98.684a10.771 10.771 0 0 0 0 15.24l39.489 39.489H10.777C4.825 175.444 0 180.269 0 186.221v139.561c0 5.952 4.825 10.777 10.777 10.777h197.479l-39.487 39.487a10.771 10.771 0 0 0 0 15.24l98.684 98.684a10.74 10.74 0 0 0 7.62 3.157c2.757 0 5.516-1.052 7.62-3.157l55.188-55.188c4.209-4.209 4.209-11.031 0-15.24s-11.032-4.209-15.24 0l-47.568 47.568-83.445-83.443 210.911-210.91 83.445 83.443-108.737 108.737c-4.209 4.209-4.209 11.031 0 15.24s11.032 4.209 15.24 0L508.845 263.82a10.771 10.771 0 0 0 3.157-7.62c0-.066-.009-.132-.01-.198-.001-.068.008-.132.008-.198zM21.553 196.997h208.256L288.812 256l-59.003 59.003H21.553V196.997zm170.075-68.66 83.445-83.443 112.425 112.424-83.445 83.445-112.425-112.426z"/>
+                        <path style="fill:#62d9c7" d="M377.246 364.937 485.982 256.2l-83.445-83.443-210.91 210.91 83.445 83.443 47.568-47.568c4.209-4.209 11.032-4.209 15.24 0l39.365-39.365c-4.208-4.209-4.208-11.031.001-15.24z"/>
+                      </svg>
                     </div>
-                    <!-- /.modal-content -->
+                    
+                    <div class="card card-default my-5">
+                      <div class="card-header">
+                          <h3 class="card-title">View Dispatch Details</h3>
+                      </div>
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-md-6 col-lg-4">
+                                  <div class="form-group">
+                                      <label>Dispatch Date : </label>
+                                      <input type="text" name="dispatchDate" id="dispatchDate" class="form-control noBorder" placeholder="Dispatch Date" disabled>
+                                  </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                  <div class="form-group">
+                                      <label>Warehouse Name : </label>
+                                      <input type="text" name="warehouseName" id="warehouseName" class="form-control noBorder" placeholder="Warehouse Name" disabled>
+                                  </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                  <div class="form-group">
+                                      <label>State : </label>
+                                      <input type="text" name="dispatchState" id="dispatchState" class="form-control noBorder" placeholder="State" disabled>
+                                  </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                  <div class="form-group">
+                                      <label>District : </label>
+                                      <input type="text" name="dispatchDistrict" id="dispatchDistrict" class="form-control noBorder" placeholder="District" disabled>
+                                  </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                  <div class="form-group">
+                                      <label>Block : </label>
+                                      <input type="text" name="dispatchBlock" id="dispatchBlock" class="form-control noBorder" placeholder="Block" disabled>
+                                  </div>
+                              </div>
+                              <div class="col-md-6 col-lg-4">
+                                  <div class="form-group">
+                                      <label>Site Name : </label>
+                                      <input type="text" name="dispatchSiteName" id="dispatchSiteName" class="form-control noBorder" placeholder="Site Name" disabled>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-12">
+                                  <div class="card ">
+                                      <div class="card-header card-grey">
+                                          <h3 class="card-title">Order List *</h3>
+                                      </div>
+                                      <div class="card-body card-footer">
+                                          <table  class="table table-bordered d-block d-md-table" style="overflow: auto;">
+                                            <thead>
+                                              <tr>
+                                                <th>S. No.</th>
+                                                <th>Material Info</th>
+                                                <th>Material Quantity</th>
+                                                <th>Action</th>
+                                                <th>Details</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>1</td>
+                                                <td>wow</td>
+                                                <td>wow</td>
+                                                <td>wow</td>
+                                                <td>wow</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-12">
+                                  <div class="form-group">
+                                    <label>Message</label>
+                                    <textarea class="form-control noBorder" rows="5" placeholder="Enter ..." disabled></textarea>
+                                  </div>
+                                </div>
+                          </div>
+                      </div>
                   </div>
-                  <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
             </section>
         </div>
         
         <footer class="main-footer">
-            <div class="float-right d-none d-sm-block"><b>Version</b> 3.1.0</div>
-            <strong>Copyright &copy; 2014-2021
-                <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.1.0
+            </div>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved.
         </footer>
-
     </div>
+    
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="../my-popup.js"></script>
     <!-- jQuery -->
     <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="../plugins/jszip/jszip.min.js"></script>
-    <script src="../plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="../plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+
+    <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- InputMask -->
+    <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <!-- dropzonejs -->
+    <script src="../plugins/dropzone/min/dropzone.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
+
+    <!-- Summernote -->
+    <script src="../plugins/summernote/summernote-bs4.min.js"></script>
+
+
     <script src="../dist/js/demo.js"></script>
     <!-- Page specific script -->
 
-    <!-- Date Range Picekr -->
-    <script type="text/javascript" src="../moment.js"></script>
-    <script type="text/javascript" src="../daterangepicker.js"></script>
-
-    <script type="text/javascript">
+    <script>
         $(function () {
-          $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            bsCustomFileInput.init();
         });
     </script>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            //Date picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+
+            //Date and time picker
+            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            })
+
+            //Bootstrap Duallistbox
+            $('.duallistbox').bootstrapDualListbox()
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+            $('.my-colorpicker2').on('colorpickerChange', function (event) {
+                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+            })
+
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            })
+
+        })
+        // BS-Stepper Init
+        document.addEventListener('DOMContentLoaded', function () {
+            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        })
+
+        // DropzoneJS Demo Code Start
+        Dropzone.autoDiscover = false
+
+    </script>
+
+
+<script type="text/javascript">
+
+    var i = 0;
+
+    $("#add").click(function () {
+
+        ++i;
+
+        $("#dynamicTable").append('<tr><td><select name="types[]" id="type_' + i + '_name"  class="form-control type_name type_name' + i + '"  data-index="' + ($('.type_name').length + 1) + '"><option value="">-- Choose Product --</option> @foreach ($type as $types)<option value="{{ $types->id}}"> {{ $types->name }}</option>@endforeach</select></td><td> <select name="product" id="product_' + i + '_name"  class="form-control product_name product_name' + i + '" data-index="' + ($('.product_name').length + 1) + '"></select></td><td><input type="number" id="quantity' + i + '" name="quantities[]" class="form-control"  /></td><td><input type="file" id="image' + i + '" name="image[]" class="form-control" /></td> <td><button type="button" class="pull-right btn btn-danger rounded-circle remove-tr"><i class="fa fa-trash"></i></button></td> </tr>');
+    });
+
+    $(document).on('click', '.remove-tr', function () {
+        $(this).parents('tr').remove();
+    });
+
+</script>
+
 </body>
 
 </html>

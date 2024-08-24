@@ -678,21 +678,18 @@
                       <option>Other Work Orders</option>
                     </select>
                   </div>
+                </div>
+                
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label>Vendor Name</label>
+                    <label>Project Head</label>
                     <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected" disabled> Vendors...</option>
-                      <option>Ravi</option>
-                      <option>Chotu</option>
-                      <option>Rohit</option>
-                      <option>Other Vendors</option>
+                      <option selected="selected" disabled>Search Project Heads...</option>
+                      <option>Pankaj Purohit</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label for="Amount12">Amount</label>
-                    <input type="number" class="form-control" id="Amount12" placeholder="Amount">
-                  </div>
                 </div>
+                
                 <div class="col-md-6">
                   <div class="form-group">
                       <label>Date</label>
@@ -703,6 +700,9 @@
                             </div>
                         </div>
                     </div>
+                  </div>
+                  
+                <div class="col-md-6">
                   <div class="form-group">
                     <label>Payment Mode</label>
                     <select class="form-control " style="width: 100%;">
@@ -713,12 +713,29 @@
                       <option>Online Payment</option>
                     </select>
                   </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="Amount12">Amount</label>
+                    <input type="number" class="form-control" id="Amount12" placeholder="Amount">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
                   <div class="form-group">
                     <label for="file">File input</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="file" onchange="document.getElementById('file-label').innerHTML = this.files[0].name">
                       <label class="custom-file-label" id="file-label" for="file">Choose file</label>
                     </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="amountText">Amount in Text</label>
+                    <input type="text" class="form-control" id="amountText" placeholder="Amount in Text">
                   </div>
                 </div>
               </div>
